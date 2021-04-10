@@ -7,4 +7,9 @@ Route.get('/', (req, res) => {
     })
 })
 
+// Auth endpoints
+const AuthController = require('../controllers/AuthController')
+Route.post('/register', AuthController.register)
+Route.post('/login', AuthController.login)
+
 module.exports = Route
