@@ -4,7 +4,7 @@ const User = require('../models/User')
 const Role = require('../models/Role')
 
 const verifyToken = (req, res, next) => {
-    let token = req.headers['Authorization']
+    let token = req.headers['authorization']
 
     if(!token){
         return res.status(401).send({ message: "No token provided!" })
@@ -16,7 +16,7 @@ const verifyToken = (req, res, next) => {
         }
         req.userId = decoded.id
 
-        next()
+        return next()
     })
 }
 
@@ -35,7 +35,7 @@ const isAdmin = (req, res, next) => {
                 }
 
                 for(let i = 0; i < roles.length; i++){
-                    if(roles[i].name === 'admin'){
+                    if(roles[i].name === 'Admin'){
                         return next()
                     }
                 }
@@ -60,7 +60,7 @@ const isModerator = (req, res, next) => {
                 }
 
                 for(let i = 0; i < roles.length; i++){
-                    if(roles[i].name === 'moderator'){
+                    if(roles[i].name === 'Moderator'){
                         return next()
                     }
                 }
